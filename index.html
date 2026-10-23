@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parking compartido</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div>
+        <h1>🚗 Parking compartido</h1>
+        <p class="muted">Organizad los días de oficina y evitad coincidir.</p>
+      </div>
+      <div class="muted" id="connection">Conectando…</div>
+    </header>
+
+    <div id="status" class="status">
+      Conectando con la base de datos…
+    </div>
+
+    <section class="panel">
+      <div class="controls">
+        <div class="field">
+          <label for="person">¿Quién eres?</label>
+          <select id="person">
+            <option value="Usuario 1">Usuario 1</option>
+            <option value="Usuario 2">Usuario 2</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="car">Tu coche</label>
+          <input id="car" maxlength="40"
+            placeholder="Ej. Coche azul (opcional)">
+        </div>
+
+        <button id="saveProfile">Guardar mis datos</button>
+      </div>
+      <p class="muted">
+        Elige tu usuario antes de reservar. El nombre y el coche
+        se mostrarán en el calendario compartido.
+      </p>
+    </section>
+
+    <section class="panel">
+      <div class="monthbar">
+        <button id="prev" aria-label="Mes anterior">←</button>
+        <h2 id="monthTitle">Mes</h2>
+        <button id="next" aria-label="Mes siguiente">→</button>
+      </div>
+
+      <div class="calendar" id="calendar"></div>
+
+      <div class="legend">
+        <span><i class="dot" style="background:#e0eaff"></i>Tu reserva</span>
+        <span><i class="dot" style="background:#ffebcf"></i>Reserva del otro usuario</span>
+        <span><i class="dot" style="background:#e7f5ec"></i>Día libre</span>
+      </div>
+
+      <p class="muted">
+        Pulsa un día para reservarlo. Solo se permite una reserva
+        por día. Los cambios se sincronizan automáticamente.
+      </p>
+    </section>
+
+    <section class="panel">
+      <h2 style="font-size:1.1rem;margin-top:0">Reservar un día</h2>
+      <p id="selectedLabel" class="muted">
+        Selecciona un día en el calendario.
+      </p>
+      <div class="controls">
+        <button class="primary" id="reserve" disabled>
+          Reservar este día
+        </button>
+        <button id="cancel" disabled>
+          Cancelar mi reserva
+        </button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2 style="font-size:1.1rem;margin-top:0">Próximas reservas</h2>
+      <div id="upcoming" class="reservations">
+        <p class="muted">Cargando reservas…</p>
+      </div>
+    </section>
+
+    <footer>
+      Las reservas se guardan online en Firebase Firestore.
+    </footer>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
